@@ -1,0 +1,51 @@
+services:
+  outline_redis:
+    image: redis
+    restart: always
+    container_name: outline_redis
+    networks:
+      - outline-internal
+
+  outline_postgres:
+    image: postgres:15
+    restart: always
+    container_name: outline_postgres
+    security_opt:
+      - label:disable
+    environment:
+      - POSTGRES_PASSWORD=0da68aed6bd2f275749d8750
+      - POSTGRES_USER=outline
+      - POSTGRES_DB=outline
+    networks:
+      - outline-internal
+    volumes:
+      - ./data/outline/db:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+
+  outline:
+    image: outlinewiki/outline:latest
+    user: root
+    restart: always
+    container_name: outline
+    command: sh -c "yarn start --env=production-ssl-disabled"
+    environment:
+      - DATABASE_URL=postgres://outline:0da68aed6bd2f275749d8750@outline_postgres:5432/outline
+      - DATABASE_URL_TEST=postgres://outline:0da68aed6bd2f275749d8750@outline_postgres:5432/outline-test
+      - REDIS_URL=redis://outline_redis:6379
+    depends_on:
+      - outline_postgres
+      - outline_redis
+    volumes:
+      - ./data/outline/file:/var/lib/outline/data
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+    networks:
+      - outline-internal
+      - reverseproxy-nw
+networks:
+  outline-internal:
+  reverseproxy-nw:
+    external: true
