@@ -11,9 +11,31 @@
 2.执行docker compose up -d 运行keycloak
 
 3.登录http://www.test.cn:4430/ ,进入administratoration Console
-[admin console](./images/admi-console.png)
+![admin console](./images/admin-console.png)
 
-添加client并记录OIDC client id 、OIDC client secret
+## 添加client
+
+![add client](./images/create-client.png)
+
+![create client1](./images/create-client1.png)
+
+![create client2](./images/create-client2.png)
+
+![create client3](./images/create-client3.png)
+
+注意Valid redirect URIs 内容为`http://www.test.cn/auth/oidc.callback` 也可以写成`http://www.test.cn/*`
+
+保存后进入outline 的Credentials 查看并记录下client Secret
+
+![client secret](./images/client-credentials.png)
+
+## 添加用户
+进入 Users-->Add user
+注意需要填写好邮箱，否则outline无法登录。若需要二步验证可在Required user actions选择OTP
+![add users](./images/add-users.png)
+
+给用户添加密码
+![set-password](./images/set-password.png)
 
 
 # outline部署
