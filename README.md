@@ -11,7 +11,7 @@
 2.执行docker compose up -d 运行keycloak
 
 3.登录http://www.test.cn:4430/ ,进入administratoration Console
-[admin console](/images/admi-console.png)
+[admin console](./images/admi-console.png)
 
 添加client并记录OIDC client id 、OIDC client secret
 
