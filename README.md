@@ -43,7 +43,7 @@
 * 进入outline文件夹，修改.env文件，替换www.test.cn域名为你自己的域名
 * 修改.env文件中OIDC信息
   
-  ![client-secret](./images/client-secret.png)
+  ![client-secret](./images/oidc-client-secret.png)
 
   替换OIDC_CLIENT_SECRET 为1.1中生成的client Secret
 
