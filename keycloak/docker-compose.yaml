@@ -42,7 +42,7 @@ services:
       networks:
         - reverseproxy-nw
         - keycloak-nw
-      command: start  --proxy edge  --hostname=wiki.test.cn --hostname-port=4430 --hostname-strict-backchannel=true --hostname-admin-url=http://wiki.test.cn:4430/
+      command: start --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true --proxy edge  --hostname=wiki.test.cn --hostname-port=4430 --hostname-strict-backchannel=true --hostname-admin-url=http://wiki.test.cn:4430/
 
 
 networks:
