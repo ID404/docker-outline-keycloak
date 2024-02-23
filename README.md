@@ -6,11 +6,11 @@
 * 部署outline
 
 # 1、keycloak OIDC部署
-1.进入keycloak文件夹，替换docker-compose.yaml文件中域名www.test.cn自己的域名
+1.进入keycloak文件夹，替换docker-compose.yaml文件中域名wiki.test.cn自己的域名
 
 2.执行docker compose up -d 运行keycloak
 
-3.登录http://www.test.cn:4430/ ,进入administratoration Console
+3.登录http://wiki.test.cn:4430/ ,进入administratoration Console
 ![admin console](./images/admin-console.png)
 
 ## 1.1 添加client
@@ -23,7 +23,7 @@
 
 ![create client3](./images/creata-client3.png)
 
-注意Valid redirect URIs 内容为`http://www.test.cn/auth/oidc.callback` 也可以写成`http://www.test.cn/*`
+注意Valid redirect URIs 内容为`http://wiki.test.cn/auth/oidc.callback` 也可以写成`http://wiki.test.cn/*`
 
 保存后进入outline 的Credentials 查看并记录下client Secret
 
@@ -40,7 +40,7 @@
 
 # 2、outline部署
 ## 配置修改
-* 进入outline文件夹，修改.env文件，替换www.test.cn域名为你自己的域名
+* 进入outline文件夹，修改.env文件，替换wiki.test.cn域名为你自己的域名
 * 修改.env文件中OIDC信息
   
   ![client-secret](./images/oidc-client-secret.png)
