@@ -36,7 +36,7 @@ services:
       volumes:
         - /etc/localtime:/etc/localtime:ro
       ports:
-        - 8080:8080
+        - 4430:8080
       depends_on:
         - keycloak-db
       networks:
