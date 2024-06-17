@@ -23,7 +23,7 @@ services:
 
   keycloak:
       container_name: keycloak
-      image: quay.io/keycloak/keycloak:23.0
+      image: quay.io/keycloak/keycloak:25.0.0
       restart: always
       environment:
         KC_DB: postgres
@@ -42,8 +42,7 @@ services:
       networks:
         - reverseproxy-nw
         - keycloak-nw
-      command: start --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true --proxy edge  --hostname=wiki.test.cn --hostname-port=4430 --hostname-strict-backchannel=true --hostname-admin-url=http://wiki.test.cn:4430/
-
+      command: command: start --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true  --proxy edge  --hostname http://wiki.test.cn:4430/ --hostname-backchannel-dynamic false --hostname-admin http://wiki.test.cn:4430
 
 networks:
     keycloak-nw:
