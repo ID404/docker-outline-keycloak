@@ -23,7 +23,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
 
   outline:
-    image: outlinewiki/outline:0.75.1
+    image: outlinewiki/outline:0.77.1
     user: root
     restart: always
     container_name: outline
