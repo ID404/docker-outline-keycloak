@@ -23,7 +23,7 @@ services:
 
   keycloak:
       container_name: keycloak
-      image: quay.io/keycloak/keycloak:25.0.0
+      image: quay.io/keycloak/keycloak:26.3.3
       restart: always
       environment:
         KC_DB: postgres
@@ -42,7 +42,15 @@ services:
       networks:
         - reverseproxy-nw
         - keycloak-nw
-      command: command: start --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true  --proxy edge  --hostname http://wiki.test.cn:4430/ --hostname-backchannel-dynamic false --hostname-admin http://wiki.test.cn:4430
+      command:
+        - start
+        #- --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true
+        - --proxy-headers=xforwarded
+        - --http-enabled=true
+        - --hostname=https://wiki.fly-one.cn/keycloak
+        - --hostname-backchannel-dynamic=false
+        - --hostname-admin=https://wiki.fly-one.cn/keycloak
+      #command: command: start --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true  --proxy edge  --hostname http://wiki.test.cn:4430/ --hostname-backchannel-dynamic false --hostname-admin http://wiki.test.cn:4430
 
 networks:
     keycloak-nw:
